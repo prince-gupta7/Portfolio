@@ -4,13 +4,11 @@ import {
   Mail, 
   Phone, 
   Code2, 
-  Terminal, 
   Download, 
   MapPin, 
   Sparkles, 
   ExternalLink, 
   ChevronDown, 
-  Swords,
   Palette
 } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from './Icons';
@@ -18,12 +16,12 @@ import { personalInfo, socialLinks } from '../data/portfolioData';
 import { useTheme } from '../context/ThemeContext';
 
 interface HeroProps {
-  onOpenTerminal: () => void;
   onOpenResume: () => void;
+  onOpenTerminal?: () => void;
   onOpenFruitNinja?: () => void;
 }
 
-export const Hero: React.FC<HeroProps> = ({ onOpenTerminal, onOpenResume, onOpenFruitNinja }) => {
+export const Hero: React.FC<HeroProps> = ({ onOpenResume }) => {
   const { currentTheme, openCustomizer } = useTheme();
   const [currentTitleIndex, setCurrentTitleIndex] = useState(0);
   const [currentText, setCurrentText] = useState('');
@@ -153,16 +151,6 @@ export const Hero: React.FC<HeroProps> = ({ onOpenTerminal, onOpenResume, onOpen
                 <Palette className="w-3.5 h-3.5 animate-spin-slow" />
                 <span>Theme: {currentTheme.name}</span>
               </button>
-
-              {onOpenFruitNinja && (
-                <button
-                  onClick={onOpenFruitNinja}
-                  className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gradient-to-r from-amber-500/20 via-rose-500/20 to-cyan-500/20 hover:from-amber-500/30 hover:via-rose-500/30 hover:to-cyan-500/30 border border-amber-500/40 text-amber-300 hover:text-white text-xs font-bold transition-all duration-200 hover:scale-105 shadow-sm shadow-amber-500/15 cursor-pointer group"
-                >
-                  <Swords className="w-3.5 h-3.5 text-amber-400 group-hover:rotate-12 transition-transform" />
-                  <span>🎮 Play Fruit Ninja</span>
-                </button>
-              )}
             </div>
 
             {/* Name Heading with Dynamic Theme Gradient */}
@@ -247,25 +235,12 @@ export const Hero: React.FC<HeroProps> = ({ onOpenTerminal, onOpenResume, onOpen
 
               <button
                 onClick={onOpenResume}
-                className="inline-flex items-center justify-center gap-2 px-4 py-3.5 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-slate-700/80 hover:border-purple-500/40 text-slate-300 hover:text-white text-sm font-medium transition-all duration-200 cursor-pointer"
+                className="inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-slate-700/80 hover:border-purple-500/40 text-slate-300 hover:text-white text-sm font-medium transition-all duration-200 cursor-pointer"
                 title="View formatted printable resume"
                 aria-label="Open formatted resume viewer"
               >
                 <Download className="w-4 h-4" style={{ color: currentTheme.secondary }} />
-                <span className="hidden sm:inline">Resume</span>
-              </button>
-
-              <button
-                onClick={onOpenTerminal}
-                className="inline-flex items-center justify-center gap-1.5 px-4 py-3.5 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-slate-700/80 text-slate-300 text-sm font-mono transition-all duration-200 cursor-pointer"
-                style={{
-                  borderColor: `rgba(${currentTheme.primaryRgb}, 0.3)`,
-                }}
-                title="Launch Interactive Terminal"
-                aria-label="Open Interactive Developer CLI"
-              >
-                <Terminal className="w-4 h-4" style={{ color: currentTheme.primary }} />
-                <span className="font-semibold">&gt;_</span>
+                <span>Resume</span>
               </button>
             </div>
 
@@ -316,18 +291,23 @@ export const Hero: React.FC<HeroProps> = ({ onOpenTerminal, onOpenResume, onOpen
                 }}
               >
                 
-                {/* Top Terminal-style Window Header */}
+                {/* Modern Sleek Card Header */}
                 <div className="flex items-center justify-between pb-4 mb-6 border-b border-slate-800/80">
                   <div className="flex items-center gap-2">
-                    <span className="w-3 h-3 rounded-full bg-rose-500/80" />
-                    <span className="w-3 h-3 rounded-full bg-amber-500/80" />
-                    <span className="w-3 h-3 rounded-full bg-emerald-500/80" />
+                    <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: currentTheme.primary }} />
+                    <span className="text-xs font-mono font-medium text-slate-400">
+                      Developer Profile
+                    </span>
                   </div>
                   <span 
-                    className="text-xs font-mono font-semibold"
-                    style={{ color: currentTheme.primary }}
+                    className="text-xs font-mono font-semibold px-2.5 py-0.5 rounded-full border"
+                    style={{ 
+                      color: currentTheme.primary,
+                      borderColor: `rgba(${currentTheme.primaryRgb}, 0.3)`,
+                      backgroundColor: `rgba(${currentTheme.primaryRgb}, 0.1)` 
+                    }}
                   >
-                    prince@developer:~$
+                    B.Tech CSE
                   </span>
                 </div>
 

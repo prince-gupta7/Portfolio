@@ -69,9 +69,7 @@ function PortfolioContent() {
       {/* Main Content Sections */}
       <main className="relative z-10">
         <Hero 
-          onOpenTerminal={() => setIsTerminalOpen(true)}
           onOpenResume={() => setIsResumeOpen(true)}
-          onOpenFruitNinja={() => setIsFruitNinjaOpen(true)}
         />
         <QuickStats />
         <About onOpenResume={() => setIsResumeOpen(true)} />
